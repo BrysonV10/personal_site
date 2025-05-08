@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bryson Van Ryn - 404</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+    <p>
+        <h1 style="font-size:xx-large;text-align: center;">
+            404 Page Not Found
+        </h1>
+        <img id="chrome_sad" src="./assets/chrome_sad.jpg" style="display:block;width:20%;margin:auto;"/>
+        <img id="ff_sad" src="./assets/ff_sad.jpg" style="display:none;width:20%;margin:auto;"/>
+        <br/>
+        <pre style="text-align: center;">
+            <code id="maincode">
+            </code>
+        </pre>
+    </p>
+</body>
+<script>
+const terminalLines = [
+  "[INFO] Initializing Kernel Subsystem...",
+  ">> mount -t devtmpfs dev /dev",
+  ">> /usr/bin/startx --no-banner --mode:daemon",
+  "[OK] Loaded module: /lib/modules/netfilter/ip_conntrack.ko",
+  "0x002A3B: 4F 20 4E 2F 00 10 1B 7C 99 8F C3 E3 11 01 44 00",
+  "0x002A4B: 78 FF 67 90 A2 8B 2F 5C DE AD BE EF FA CE D0 0D",
+  "$ sudo apt-get purge --force-remove-reinstreq",
+  "Reading package lists... Done",
+  "Building dependency tree",
+  "Reading state information... Done",
+  "0 upgraded, 0 newly installed, 6 to remove and 4 not upgraded.",
+  "systemctl --user daemon-reexec",
+  "[WARN] BIOS check skipped (non-blocking error)",
+  "[SYSLOG] :::PROC_EVENT:::pid=4378:fork:parent=2351 child=4378",
+  "[DEBUG] Lock released on /dev/ttyS0",
+  "[BOOTCHK] Sequence 0x3E1 completed in 842ms",
+  "> ps -ef | grep sshd",
+  "root     0001     0  0 00:00 ?        00:00:00 /usr/sbin/sshd -D",
+  "user     0420  0001  0 00:01 ?        00:00:00 sshd: user [priv]",
+  "*** CONNECTION ESTABLISHED ***",
+  "[crypto::rng_seed] = 0x4EAD09BFFD77AA23DCC0",
+  "[INFO] Running secure entropy pool mix...",
+  "$ ./start_miner.sh --thread=8 --gpu --silent",
+  ">>> Hashrate: ████████████████░░░ 87.3 MH/s",
+  "TRACE: /lib/x86_64-linux-gnu/libc.so.6 => 0x7f21b4a1d000",
+  "TRACE: memory leak suspected at 0xBADC0FFEE",
+  "[ALERT] :: UNMOUNTABLE_BOOT_VOLUME detected on /dev/sda1",
+  "*** Initiating recovery in safe-mode ***",
+  "# fsck /dev/sda1 -f -y",
+  "Phase 1: Check blocks and sizes",
+  "Phase 2: Check pathnames",
+  "Phase 3: Check connectivity",
+  "Phase 4: Check reference counts",
+  "Phase 5: Check cylinder groups",
+  "/dev/sda1: CLEAN",
+  "0x100203FF | JMP 0xFFE80000",
+  "0x10020401 | MOV EAX, 0xCAFEBABE",
+  "0x10020406 | INT 0x80",
+  ">>> ENV VARS:",
+  "USER=root",
+  "SHELL=/bin/bash",
+  "XDG_SESSION_TYPE=tty",
+  "HISTSIZE=10000",
+  "LD_PRELOAD=/lib/fakehook.so",
+  "[TRACE] ::curl:: download failed (404) at https://mirror.voidsec.pw/kernel/patches/x42-diff.7z",
+  "$ whoami",
+  "anonymous",
+  "$ uptime",
+  "03:14:52 up 999 days, 23:47, 0 users, load average: 6.66, 6.66, 6.66",
+  "=== BEGIN ENCRYPTED BLOB ===",
+  "U2FsdGVkX1+pD3KrkD9xM1t5ZdVyDQUvNH9fT6w4cQK8RmjN7rN2Iz==",
+  "=== END ENCRYPTED BLOB ===",
+  "$ nc -lvnp 4444",
+  "listening on [any] 4444 ...",
+  "connect to [127.0.0.1] from localhost [127.0.0.1] 53190",
+  ">>> launching process tree:",
+  "|- PID 1023: /usr/bin/python3 server.py",
+  "|  |- PID 1024: [ThreadPoolWorker-1]",
+  "|  |- PID 1025: [ThreadPoolWorker-2]",
+  "|-- PID 1050: /usr/bin/nmap -A 192.168.1.1",
+  "$ top -n 1 | head -20",
+  "  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND",
+  " 1378 root      20   0  266664   7204   4548 R  99.3  0.2   0:00.13 cryptid",
+  "Segmentation fault (core dumped)",
+  "core dumped at: /var/crash/0xDEADBEEF",
+  ">>> [HEXDUMP] 0x00F4C100:",
+  "F0 0D 1E 55 A3 C9 88 42 6C 64 0A 0A 00 01 FE ED",
+  "-- TRACEBACK (most recent call last) --",
+  "File \"matrix.py\", line 1337, in <module>",
+  "    return self.wake_the_matrix()",
+  "File \"matrix.py\", line 42, in wake_the_matrix",
+  "    raise NeoAwakeningException(\"The One has been found.\")",
+  "NeoAwakeningException: The One has been found.",
+  "> /dev/null 2>&1 & disown",
+  ">> END FAKE TERMINAL STREAM <<"
+];
+let totalTimeDelay = 0;
+for(let i=0;i<terminalLines.length;i++){
+    let timeDelay = Math.floor(Math.random() * 1000) + 500;
+    totalTimeDelay += timeDelay;
+    setTimeout(() => {
+        document.getElementById("maincode").innerHTML = document.getElementById("maincode").innerHTML + terminalLines[i] + "<br>";
+    }, totalTimeDelay);
+}
+
+if(window.navigator.userAgent.includes("Chrome")){
+    document.getElementById("chrome_sad").style.display = "block";
+    document.getElementById("ff_sad").style.display = "none";
+}else if(window.navigator.userAgent.includes("Firefox")){
+    document.getElementById("chrome_sad").style.display = "none";
+    document.getElementById("ff_sad").style.display = "block";
+}else{
+    document.getElementById("chrome_sad").style.display = "none";
+    document.getElementById("ff_sad").style.display = "none";
+}
+
+</script>
+</html>

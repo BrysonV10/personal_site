@@ -1,0 +1,97 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  .grid-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+  .window {
+    display: flex;
+    flex-direction: column;
+  }
+  .window-pane {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+
+
+.grid-container{
+    display:grid;
+    width:100%;
+    grid-template-columns: clamp(150px, 25vw, 300px) 1fr;
+    justify-content: space-between;
+    grid-template-rows: auto;
+    gap: 0.5rem;
+    
+}
+
+.menu-window {
+    ::-webkit-scrollbar {
+        width:0;
+    }
+}
+
+.menu-pane {
+    font-size:medium;
+}
+
+.menu-pane > p> a {
+    text-decoration:none;
+}
+
+#maincode {
+    text-align: left;
+}
+
+.underlined {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+}
+
+.menu-pane > p:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+#message {
+    width: 60%;
+    height: 5rem;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background-color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    border-color:black;
+    border: 2px;
+    border-style: solid;
+}
+
+#message:focus {
+    background-color: #000;
+    color: #fff;
+}
+#submit {
+    cursor:pointer;
+}
+
+#submit:hover {
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tag {
+    background-color: #cecece;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}

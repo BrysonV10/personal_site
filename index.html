@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bryson Van Ryn - Home</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
+    <link rel="stylesheet" href="/styles.css"/>
+    <!-- 100% privacy-first analytics - simpleanalytics.com -->
+     <!-- 100% privacy-first analytics -->
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="window menu-window" style="min-width:auto;">
+            <div class="title-bar"> 
+                <h1 class="title">Menu</h1>
+            </div>
+            <div class="separator"></div>
+            <div class="window-pane menu-pane">
+                <p class="underlined"><a href="/">About Me</a></p>
+                <p><a href="/contact">What Have I Been Up To? (The Blog)</a></p>
+                <p><a href="/projects">Projects and Involvements</a></p>
+                <p><a href="/stalk-me">Stalk Me!</a></p>
+                <p><a href="/contact">Contact Me</a></p>
+                <p style="font-size:x-small"><i>This site uses system.css - an open source stylesheet</i></p>
+            </div>
+            
+        </div>
+    
+        <div class="window">
+            <div class="title-bar"> 
+                <h1 class="title">Home</h1>
+            </div>
+            <div class="separator"></div>
+            
+            <div class="window-pane">
+                <h1 style="font-size:xx-large; text-align:center;">Hi, I'm Bryson!</h1>
+                <p>Thanks for finding my little corner of the internet. </p>
+                <p>I'm currently an undergraduate Computer Engineering student at Michigan Technological University (go Huskies!).
+                    In my free time I love the outdoors, exploring the Keweenaw Penninsula, and much more.
+                    I'm also an active member of the <a href="https://mturowingclub.com/" target="_blank">Rowing Club at Michigan Tech</a> (pictured below).
+                </p>
+                <div style="display:inline;">
+                <div id="rowpic" style="position:relative; width:40%; margin:auto;aspect-ratio: 974/647;">
+                    <img id="retro_row_pic" src="/assets/rowing_retro_1.jpg" style="width:100%; height:auto; position:absolute; top:0; left:0;z-index:2;"/>
+                    <img src="/assets/rowing_1.JPG" style="width:100%; height:auto; position:absolute; top:0; left:0;z-index:0;"/>
+                </div>
+                </div>
+                <p style="text-align: center;"><i>I wish the image was actually real, oh, wait...</i></p>
+                <p></p>
+                <p>I do run every now and then too, and by that I mean quite a bit. I've got a solid group of friends that are dedicated runners which makes the training process much easier.</p>
+                <p><i>You can stalk my running progress <a href="./stalk-me">here</a>.</i></p>
+                <div style="display:inline;">
+                    <div id="runpic" style="position:relative; width:30%; margin:auto;aspect-ratio: 2/3;">
+                        <img id="retro_run_pic" src="/assets/running_retro.png" style="width:100%; height:auto; position:absolute; top:0; left:0;z-index:2;"/>
+                        <img src="/assets/running_original.jpg" style="width:100%; height:auto; position:absolute; top:0; left:0;z-index:0;"/>
+                    </div>
+                    </div>
+                <p>Despite a personal website being something I've wanted to work on for a while, it was my professor Shane Oberloier (<a href="https://oberloier.com" target="_blank">found here</a>) that provided some of the inspriation for this site (shoutout to his digital logic class, it's been one of my favorites thus far in my academic career).
+                </p>
+                <p>Finally, because some nerd who looks at this website is going to wonder, no, I do not run MacOS. Both of my personal computers run Windows
+                    (with dev work done in WSL2, of course) with a couple small Linux servers around the house.
+                    (Though I do respect the original MacOS aesthetic, software during this era was awesome, hence why my entire site is themed around it :) ).
+                </p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./scripts/home_scripts.js"></script>
+<script type="module">
+// DEV CODE
+// TODO: Remove in prod
+if (import.meta.hot) {
+  import.meta.hot.accept(() => {
+    // Optional: cleanup or re-run some logic
+    console.log('hot updated home_scripts.js');
+  });
+}
+</script>
+</body>
+
+</html>

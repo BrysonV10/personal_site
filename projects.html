@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bryson Van Ryn - Projects</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="window menu-window" style="min-width:auto;">
+            <div class="title-bar"> 
+                <h1 class="title">Menu</h1>
+            </div>
+            <div class="separator"></div>
+            <div class="window-pane menu-pane">
+                <p><a href="/">About Me</a></p>
+                <p><a href="/contact">What Have I Been Up To? (The Blog)</a></p>
+                <p class="underlined"><a href="/projects">Projects and Involvements</a></p>
+                <p><a href="/stalk-me">Stalk Me!</a></p>
+                <p><a href="/contact">Contact Me</a></p>
+                <p style="font-size:x-small"><i>This site uses system.css - an open source stylesheet</i></p>
+            </div>
+            
+        </div>
+    
+        <div class="window">
+            <div class="title-bar"> 
+                <h1 class="title">Projects</h1>
+            </div>
+            <div class="separator"></div>
+            
+            <div class="window-pane">
+                <h1 style="font-size:xx-large; text-align:center;">Projects and Involvements</h1>
+                <p style="text-align: center;">Sorted by newest first...</p>
+                <hr/>
+                <h2 style="text-align: center;">The WMAA Print Queue</h2>
+                <p style="font-size:smaller; text-align: center;">2024</p>
+                <p>
+                    As part of my (high school) senior design project, I and one other implemented a 3D print queuing system using React,
+                    MUI, and Firebase. Students can log in with their school Google account and submit print jobs, as well as view the status of printers without being in the room.
+                    We also added admin features for faculty to moderate user generated content, and implemented restrictions preventing users from outside the organization from logging in. 
+                </p>
+                <p><span class="tag">React.js</span> <span class="tag">Firebase Firestore and Auth</span> <span class="tag">Material UI</span> <span class="tag">React Router DOM</span></p>
+                
+                <hr/>
+                <h2 style="text-align: center;">Choose Your Own Adventure Game</h2>
+                <p style="font-size:smaller; text-align: center;">2022</p>
+                <p>
+                    For another school project, I created a choose your own adventure game, which I originally used for my AP US History "What If" project, but eventually ended up repurposing for other class projects as well.
+                    The game is very customizable, includes health and money systems, and was easy to extend when I wanted to use it later. 
+                    I wrote it originally using Supabase, React.js, and MUI. (Unfortunately, due to Supabase's free tier limitations, the original game modes we made for these classes have been lost, but the code is still up and available.)
+                    I also <i>might</i> rewrite some of it to use something more sustainable long term, like using a static JSON file like I did for my WWII Aircraft Recognition game.
+                </p>
+                <p><span class="tag">React.js</span> <span class="tag">Supabase Auth + DB</span> <span class="tag">Material UI</span> <span class="tag">React Router DOM</span></p>
+                
+                <hr/>
+                <h2 style="text-align: center;">WWII Aircraft Recognition Game</h2>
+                <p style="font-size:smaller; text-align: center;">2020</p>
+                <p>
+                    For my Freshman year Aviation History and Literature project, I created this game as a fun exploration into React.js and Firebase. Although the original version had a couple of pretty serious bugs
+                    (going through 50k Firestore reads in 10 minutes from 5 people using it, anyone?) I eventually ended up shipping a different version several years later without the original leaderboard functionality and authentication system.
+                    The version now just pulls static JSON data from the server, which is much simpler to maintain. 
+                </p>
+                <p><span class="tag">React.js</span> <span class="tag">Firebase Auth, DB, and Hosting</span> <span class="tag">MUI</span> <span class="tag">React Router DOM</span></p>
+
+                <hr/>
+                <h2 style="text-align: center;">The Candy Connection</h2>
+                <p style="font-size:smaller; text-align: center;">2020</p>
+                <p>
+                    Another fun project I created my Freshman year for my aspiring entrepreneur friend who was selling candy in school. The site featured a stock system, online ordering, and a blog.
+                    I kept the stack simple, and learned how to use hCaptcha and Vercel Serverless Functions for the first time. Orders are submitted to the serverless function, which verifies the hCaptcha code and submits the order,
+                    as well as notifying the owners of the business using notifications sent via a webhook to Teams. 
+                </p>
+                <p><span class="tag">HTML/CSS</span> <span class="tag">Firebase Firestore</span> <span class="tag">Vercel Serverless Functions</span> <span class="tag">hCaptcha</span></p>
+
+                
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
