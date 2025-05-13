@@ -1,8 +1,7 @@
 import homePage from "./index.html";
 import stalkMe from "./stalk-me.html";
 import NotFound from "./404.html";
-import Contact from "./contact.html";
-
+import Projects from "./projects.html";
 var stravaCache = { lastUpdated: 0, data: {} };
 var stravaAccessToken = { validUntil: 0, token: "" };
 
@@ -121,7 +120,7 @@ Bun.serve({
             GET: ()=> new Response(Bun.file("./contact.html")),
             POST: ContactFormPostHandler
         },
-        "/projects": () => new Response(Bun.file("./projects.html")),
+        "/projects": Projects,
         "/api/stravaStats": async (req) => {
             return new Response(`{
     "biggest_ride_distance": 0,
@@ -240,6 +239,7 @@ Bun.serve({
 
         },
         // fallback route for not found pages
+        
         "/*": NotFound,
     },
     development: true,

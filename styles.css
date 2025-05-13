@@ -95,3 +95,12 @@ html, body {
     margin-right: 0.5rem;
     font-size: 0.9rem;
 }
+
+.contentHidden {
+    display: none;
+}
+
+.projectHeading {
+    cursor:pointer;
+    text-align: center;
+}
