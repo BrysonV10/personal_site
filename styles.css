@@ -104,3 +104,16 @@ html, body {
     cursor:pointer;
     text-align: center;
 }
+
+#viewall {
+    border:#000 solid 2px;
+    width:fit-content;
+    padding:0.5rem;
+    margin:1rem auto;
+}
+
+#viewall:hover {
+    background-color: #000;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
