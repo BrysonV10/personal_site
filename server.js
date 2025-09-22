@@ -115,7 +115,7 @@ Bun.serve({
     routes: {
         "/": homePage,
         "/styles.css": () => new Response(Bun.file("./styles.css")),
-        "/stalk-me": stalkMe,
+        "/opendata": stalkMe,
         "/contact": {
             GET: ()=> new Response(Bun.file("./contact.html")),
             POST: ContactFormPostHandler
