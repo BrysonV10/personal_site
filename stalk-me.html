@@ -61,19 +61,35 @@
                     (I'm working on adding more data to this page, but integrating my life to the internet
                     is a work in progress.)</p>
                 </p>
-                <h2 style="text-align: center;">Running</h2>
-                <p>Coming soon...</p>
+                
                 <h2 style="text-align: center;">This Website</h2>
                 <p>
                     I use <a href="https://simpleanalytics.com/" target="_blank">Simple Analytics</a> to track the number of visitors to this site in a privacy respecting way.
                     This data comes from them and I chose to display it because I think it's interesting.
                 </p>
-                <p>Coming soon...</p>
+                <div id="chart" data-hostname="brysonvanryn.com" style="aspect-ratio: 2/1">
+                <p style="margin: 0">Loading chart...</p>
+                </div> <!-- TODO: Error handling for chart not loading -->
+
+                <script>
+                    function onLoad(ok){
+                        if(!ok){
+                            const chartContainer = document.getElementById("chart");
+                            chartContainer.innerHTML = "<p style='color: red;'>Error loading chart. Please try again later.</p>";
+                        }
+                    }
+                </script>
+                <script
+                async
+                data-chart-selectors="#chart"
+                data-onload="onLoad"
+                src="https://scripts.simpleanalyticscdn.com/embed.js"
+                ></script>
             </div>
         </div>
     </div>
 
-    <script type="module" src="./scripts/stalk-scripts.js"></script>
+    
 <script type="module">
 // DEV CODE
 // TODO: Remove in prod
