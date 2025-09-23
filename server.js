@@ -242,6 +242,6 @@ Bun.serve({
         
         "/*": NotFound,
     },
-    development: true,
-    port: 3000
+    development: !process.env.PROD||true,
+    port: process.env.PROD?8080:3000
 });
