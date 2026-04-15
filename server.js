@@ -71,7 +71,8 @@ async function ContactFormPostHandler(req){
 }
 
 
-
+let numClients = 0;
+let clients = [];
 Bun.serve({
     routes: {
         "/": homePage,
@@ -84,6 +85,35 @@ Bun.serve({
         "/projects": Projects,
         // fallback route for not found pages
         "/*": NotFound,
+    },
+    fetch(req, server){
+        if(new URL(req.url).pathname == "/ws" && server.upgrade(req)){
+            return;
+        }
+        return new Response(Bun.file("./404.html"), { status: 404 });
+    },
+    websocket:{
+        open(ws){
+            numClients++;
+            clients.push(ws);
+            for(let client of clients){
+                client.send("clients:" + numClients);
+            }
+        },
+        close(ws){
+            numClients--;
+            clients.splice(clients.indexOf(ws), 1);
+            for(let client of clients){
+                client.send("clients:" + numClients);
+            }
+        },
+        message(ws, message){
+            if(message == "hi"){
+                for(let client of clients){
+                    client.send("wave:"+numClients);
+                }
+            }
+        }
     },
     development: !Bun.env.PROD || true,
     port: Bun.env.PROD ? 80 : 3000
