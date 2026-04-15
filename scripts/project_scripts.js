@@ -15,6 +15,7 @@ for(let i=0;i<headings.length;i++){
 
 document.getElementById("viewall").addEventListener("click", () => {
     if(document.getElementById("viewall").innerText === "View All"){
+    sa_event("all_project_expand");
     for(let i=0;i<headings.length;i++){
         let content = document.getElementById(headings[i].dataset.content);
         if(content.style.display === "none" || content.style.display === ""){
@@ -24,6 +25,7 @@ document.getElementById("viewall").addEventListener("click", () => {
     }
     document.getElementById("viewall").innerText = "View Less";
     } else {
+        sa_event("all_project_collapse");
         for(let i=0;i<headings.length;i++){
             let content = document.getElementById(headings[i].dataset.content);
             if(content.style.display === "block"){

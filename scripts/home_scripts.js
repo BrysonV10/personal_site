@@ -10,6 +10,7 @@ document.getElementById("rowpic").addEventListener("mouseenter", ()=> {
 });
 
 document.getElementById("rowpic").addEventListener("mouseleave", ()=> {
+    sa_event("rowpick_hover_off")
     console.log("hover")
     document.getElementById("retro_row_pic").animate([
         {opacity:"0"},
