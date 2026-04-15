@@ -58,8 +58,7 @@
                 <p>
                     Because data is fun, here's some of the stats about what I've been up to.
                     <br/>
-                    (I'm working on adding more data to this page, but integrating my life to the internet
-                    is a work in progress.)</p>
+                    (I'm working on adding more data to this page, but that's a work in progress.)</p>
                 </p>
                 
                 <h2 style="text-align: center;">This Website</h2>
@@ -68,8 +67,13 @@
                     This data comes from them and I chose to display it because I think it's interesting.
                 </p>
                 <div id="chart" data-hostname="brysonvanryn.com" style="aspect-ratio: 2/1">
-                <p style="margin: 0">Loading chart...</p>
-                </div> <!-- TODO: Error handling for chart not loading -->
+                <p style="margin: 0" id="loading">Loading chart...this may take some time as the external services I rely on for this are slow.</p>
+                <div id="failedtoload" style="display:none;">
+                    <h1 style="text-align: center;">Sorry. This embed isn't working right now</h1>
+                    <img id="chrome_sad" src="./assets/chrome_sad.jpg" style="display:block;width:20%;margin:auto;"/>
+                    <img id="ff_sad" src="./assets/ff_sad.jpg" style="display:none;width:20%;margin:auto;"/>
+                </div>
+                </div>
 
                 <script>
                     function onLoad(ok){
@@ -78,11 +82,27 @@
                             chartContainer.innerHTML = "<p style='color: red;'>Error loading chart. Please try again later.</p>";
                         }
                     }
+
+                    function onScriptBlocked(){
+                        document.querySelector("#failedtoload").style.display = "block";
+                        document.querySelector("#loading").style.display = "none";
+                        if(window.navigator.userAgent.includes("Chrome")){
+                            document.getElementById("chrome_sad").style.display = "block";
+                            document.getElementById("ff_sad").style.display = "none";
+                        }else if(window.navigator.userAgent.includes("Firefox")){
+                            document.getElementById("chrome_sad").style.display = "none";
+                            document.getElementById("ff_sad").style.display = "block";
+                        }else{
+                            document.getElementById("chrome_sad").style.display = "none";
+                            document.getElementById("ff_sad").style.display = "none";
+                        }
+                    }
                 </script>
                 <script
                 async
                 data-chart-selectors="#chart"
                 data-onload="onLoad"
+                onerror="onScriptBlocked()"
                 src="https://scripts.simpleanalyticscdn.com/embed.js"
                 ></script>
             </div>
