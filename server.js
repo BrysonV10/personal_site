@@ -2,7 +2,7 @@ import homePage from "./index.html";
 import stalkMe from "./stalk-me.html";
 import NotFound from "./404.html";
 import Projects from "./projects.html";
-
+const isProd = Bun.env.PROD && Bun.env.PROD=="true";
 
 async function ContactFormPostHandler(req){
     let formData = await req.formData();
@@ -115,6 +115,6 @@ Bun.serve({
             }
         }
     },
-    development: !Bun.env.PROD || true,
-    port: Bun.env.PROD ? 80 : 3000
+    development: isProd ? false : true,
+    port: isProd ? 80 : 3000
 });
