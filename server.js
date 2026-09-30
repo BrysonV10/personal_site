@@ -10,22 +10,40 @@ async function ContactFormPostHandler(req){
     let email = formData.get("email");
     let message = formData.get("message");
     let hcaptcha = formData.get("h-captcha-response");
-    let response = await fetch("https://hcaptcha.com/siteverify", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({
-            secret: Bun.env.HCAPTCHA_SECRET,
-            response: hcaptcha
-        })
-    });
-    if (response.status != 200) {
-        return new Response("Error verifying hCaptcha", { status: 500 });
+    let hcaptchaSecret = Bun.env.HCAPTCHA_SECRET;
+    if (!hcaptcha || !hcaptchaSecret) {
+        console.error("hCaptcha verification unavailable: missing response token or HCAPTCHA_SECRET");
+        return Response.redirect("/contact?submit=0", 302);
     }
+
+    let response;
+    try {
+        response = await fetch("https://api.hcaptcha.com/siteverify", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({
+                secret: hcaptchaSecret,
+                response: hcaptcha,
+                sitekey: "986ee97a-b4fc-42a0-9216-5ea2b3eee0ac"
+            }),
+            signal: AbortSignal.timeout(10_000)
+        });
+    } catch (error) {
+        console.error("Error contacting hCaptcha:", error);
+        return Response.redirect("/contact?submit=0", 302);
+    }
+
+    if (!response.ok) {
+        console.error("Error verifying hCaptcha:", response.status, response.statusText);
+        return Response.redirect("/contact?submit=0", 302);
+    }
+
     let data = await response.json();
-    if (data.success != true) {
-        return new Response("hCaptcha verification failed", { status: 500 });
+    if (data.success !== true) {
+        console.error("hCaptcha verification failed:", data["error-codes"] ?? "no error code returned");
+        return Response.redirect("/contact?submit=0", 302);
     }
     if (name == null || email == null || message == null) {
         return new Response("Missing fields", { status: 400 });
@@ -47,26 +65,39 @@ async function ContactFormPostHandler(req){
     }
     let consumerKey = Bun.env.TURBO_SMTP_KEY;
     let consumerSecret = Bun.env.TURBO_SMTP_SECRET;
-    response = await fetch("https://api.turbo-smtp.com/api/v2/mail/send", {
-        method:"POST",
-        headers: {
-            "Content-Type": "application/json",
-            'ConsumerKey': consumerKey,
-            'Consumersecret': consumerSecret,
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            "from" : "noreply@brysonvanryn.com",
-            "to" : "brysonvanryn@gmail.com",
-            "subject" : `Contact form submission from ${name}`,
-            "content" : "Name: " + name + "\nEmail: " + email + "\nMessage: " + message,
-            "html" : "<p>Name: " + name + "</p><p>Email: " + email + "</p><p>Message: " + message + "</p>"
-        })
-    });
-    if(response.status != 200) {
-        console.error("Error sending email: ", response.status, response.statusText);
+    if (!consumerKey || !consumerSecret) {
+        console.error("Email delivery unavailable: missing TurboSMTP credentials");
         return Response.redirect("/contact?submit=0", 302);
     }
+
+    try {
+        response = await fetch("https://api.turbo-smtp.com/api/v2/mail/send", {
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+                'ConsumerKey': consumerKey,
+                'Consumersecret': consumerSecret,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                "from" : "noreply@brysonvanryn.com",
+                "to" : "brysonvanryn@gmail.com",
+                "subject" : `Contact form submission from ${name}`,
+                "content" : "Name: " + name + "\nEmail: " + email + "\nMessage: " + message,
+                "html_content" : "<p>Name: " + name + "</p><p>Email: " + email + "</p><p>Message: " + message + "</p>"
+            }),
+            signal: AbortSignal.timeout(10_000)
+        });
+    } catch (error) {
+        console.error("Error contacting TurboSMTP:", error);
+        return Response.redirect("/contact?submit=0", 302);
+    }
+
+    if (!response.ok) {
+        console.error("Error sending email:", response.status, response.statusText, await response.text());
+        return Response.redirect("/contact?submit=0", 302);
+    }
+
     return Response.redirect("/contact?submit=1", 302);
 }
 
