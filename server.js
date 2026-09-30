@@ -63,38 +63,31 @@ async function ContactFormPostHandler(req){
     if (email.indexOf("@") > email.indexOf(".")) {
         return new Response("Invalid email", { status: 400 });
     }
-    let consumerKey = Bun.env.TURBO_SMTP_KEY;
-    let consumerSecret = Bun.env.TURBO_SMTP_SECRET;
-    if (!consumerKey || !consumerSecret) {
-        console.error("Email delivery unavailable: missing TurboSMTP credentials");
+    let discordWebhookUrl = Bun.env.DISCORD_WEBHOOK_URL;
+    if (!discordWebhookUrl) {
+        console.error("Contact form delivery unavailable: missing DISCORD_WEBHOOK_URL");
         return Response.redirect("/contact?submit=0", 302);
     }
 
     try {
-        response = await fetch("https://api.turbo-smtp.com/api/v2/mail/send", {
-            method:"POST",
+        response = await fetch(discordWebhookUrl, {
+            method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                'ConsumerKey': consumerKey,
-                'Consumersecret': consumerSecret,
-                'Accept': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "from" : "noreply@brysonvanryn.com",
-                "to" : "brysonvanryn@gmail.com",
-                "subject" : `Contact form submission from ${name}`,
-                "content" : "Name: " + name + "\nEmail: " + email + "\nMessage: " + message,
-                "html_content" : "<p>Name: " + name + "</p><p>Email: " + email + "</p><p>Message: " + message + "</p>"
+                content: `**New contact form submission**\n**Name:** ${name}\n**Email:** ${email}\n**Message:**\n${message}`,
+                allowed_mentions: { parse: [] }
             }),
             signal: AbortSignal.timeout(10_000)
         });
     } catch (error) {
-        console.error("Error contacting TurboSMTP:", error);
+        console.error("Error contacting Discord webhook:", error);
         return Response.redirect("/contact?submit=0", 302);
     }
 
     if (!response.ok) {
-        console.error("Error sending email:", response.status, response.statusText, await response.text());
+        console.error("Error sending contact form to Discord:", response.status, response.statusText, await response.text());
         return Response.redirect("/contact?submit=0", 302);
     }
 
